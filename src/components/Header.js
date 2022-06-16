@@ -22,5 +22,10 @@ export default function Header(props) {
 }
 
 const styles = StyleSheet.create({
-  header: {justifyContent: 'space-between', flexDirection: 'row', padding: 10},
+  header: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    padding: 10,
+    backgroundColor: 'white',
+  },
 });

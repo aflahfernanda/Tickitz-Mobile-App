@@ -5,6 +5,8 @@ const Stack = createNativeStackNavigator();
 
 import Detail from '../screen/Detail';
 import Order from '../screen/Order';
+import Payment from '../screen/Payment';
+import Result from '../screen/Result';
 
 export default function DetailNavigator() {
   return (
@@ -22,6 +24,18 @@ export default function DetailNavigator() {
         options={{
           headerShown: false,
         }}
+      />
+      <Stack.Screen
+        component={Payment}
+        name="Payment"
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        component={Result}
+        name="Result"
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

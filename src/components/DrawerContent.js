@@ -67,6 +67,7 @@ function DrawerContent(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#DEDEDE',
   },
   containerProfile: {
     margin: 10,

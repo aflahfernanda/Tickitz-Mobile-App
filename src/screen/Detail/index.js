@@ -11,7 +11,8 @@ import {
 import DatePicker from 'react-native-date-picker';
 import axios from '../../utils/axios';
 import styles from './styles';
-
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 function DetailScreen(props) {
   const dataId = props.route.params.id;
   const [movie, setMovie] = useState([]);
@@ -62,6 +63,7 @@ function DetailScreen(props) {
   };
   return (
     <ScrollView>
+      <Header />
       <View style={styles.container}>
         <View style={styles.backgroundImage}>
           <Image source={require('../../assets/spiderman.png')} />
@@ -149,6 +151,7 @@ function DetailScreen(props) {
           ))}
         </View>
       </View>
+      <Footer />
     </ScrollView>
   );
 }

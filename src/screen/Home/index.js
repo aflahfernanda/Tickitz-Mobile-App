@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect, useState} from 'react';
 import {View, Text, Image, StyleSheet, ScrollView} from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+import Footer from '../../components/Footer';
 
 import axios from '../../utils/axios';
 
@@ -140,6 +141,7 @@ function HomeScreen(props) {
           updates via email .
         </Text>
       </View>
+      <Footer />
     </ScrollView>
   );
 }
