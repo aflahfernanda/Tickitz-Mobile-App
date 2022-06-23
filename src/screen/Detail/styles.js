@@ -16,6 +16,13 @@ export default StyleSheet.create({
   containers: {
     marginHorizontal: 20,
   },
+  imageCard: {
+    width: 100,
+  },
+  imageCards: {
+    marginHorizontal: 100,
+    marginBottom: 20,
+  },
   title: {
     textAlign: 'center',
     marginTop: 40,

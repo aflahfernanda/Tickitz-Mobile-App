@@ -6,13 +6,21 @@ export default function Header(props) {
   const openDrawer = () => {
     props.navigation.openDrawer();
   };
+  const handleHome = () => {
+    props.navigation.navigate('AppScreen', {
+      screen: 'Home',
+    });
+  };
   return (
     <View style={styles.header}>
       <View>
-        <Image
-          source={require('../assets/Tickitz.png')}
-          style={{height: 35, width: 80, resizeMode: 'stretch'}}
-        />
+        <TouchableOpacity onPress={handleHome}>
+          <Image
+            source={require('../assets/Tickitz.png')}
+            style={{height: 35, width: 80, resizeMode: 'stretch'}}
+            onPress={handleHome}
+          />
+        </TouchableOpacity>
       </View>
       <TouchableOpacity onPress={openDrawer}>
         <Icon name="menu" size={25} />

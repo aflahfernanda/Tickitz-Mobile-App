@@ -10,37 +10,53 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import Seat from '../../components/seat';
+
 import styles from './styles';
-import Icon from 'react-native-vector-icons/Feather';
+
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import {useDispatch, useSelector} from 'react-redux';
+import {postTransaction} from '../../store/actions/transaction';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 function PaymentScreen(props) {
-  const listSeat = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
-  const [selectedSeat, setSelectedSeat] = useState([]);
-  const [reservedSeat, setReservedSeat] = useState(['A1', 'C7']);
-
-  useEffect(() => {
-    console.log(props.route.params);
-  }, []);
-
-  const handleSelectedSeat = data => {
-    if (selectedSeat.includes(data)) {
-      const deleteSeat = selectedSeat.filter(el => {
-        return el !== data;
+  const dispatch = useDispatch();
+  const id = AsyncStorage.getItem('id');
+  const movie = props.route.params.movie;
+  const order = props.route.params.order;
+  const seat = props.route.params.seat;
+  const [form, setForm] = useState({
+    userId: '2',
+    scheduleId: order.scheduleId,
+    dateBooking: order.dateBooking,
+    timeBooking: order.timeBooking,
+    paymentMethod: 'bca',
+    totalPayment: seat.length * order.price,
+    statusPayment: 'succes',
+    seat: seat,
+  });
+  console.log(form);
+  const handleSubmit = async event => {
+    try {
+      event.preventDefault();
+      // console.log("Submit Login");
+      // Input = email password di siapkan
+      // console.log(form);
+      // Proses = memanggil axios
+      const formData = new FormData();
+      for (const data in form) {
+        formData.append(data, form[data]);
+      }
+      const resultTransaction = await dispatch(postTransaction(form));
+      console.log(resultTransaction);
+      console.log(resultTransaction.action.payload.data.data);
+      props.navigation.navigate('DetailScreen', {
+        screen: 'Midtrans',
+        params: {midtrans: resultTransaction.action.payload.data.pagination},
       });
-      setSelectedSeat(deleteSeat);
-    } else {
-      setSelectedSeat([...selectedSeat, data]);
+      // Output = suatu keadaan yang dapat diinfokan ke user bahwa proses sudah selesai
+    } catch (error) {
+      console.log(error.response.data);
     }
-  };
-
-  const handleResetSeat = () => {
-    setSelectedSeat([]);
-  };
-
-  const handleBookingSeat = () => {
-    console.log(selectedSeat);
   };
 
   return (
@@ -49,9 +65,11 @@ function PaymentScreen(props) {
       <View style={styles.container}>
         <View style={styles.totalPayment}>
           <Text style={styles.payment}>Total Payment</Text>
-          <Text style={styles.paymentPrice}>$30.00</Text>
+          <Text style={styles.paymentPrice}>
+            Rp.{order.price * seat.length}
+          </Text>
         </View>
-        <Text style={styles.paymentMethod}>Payment Method</Text>
+        {/* <Text style={styles.paymentMethod}>Payment Method</Text>
         <View style={styles.paymentBoxs}>
           <View style={styles.paymentBox}>
             <View style={styles.paymentInsideBox}>
@@ -97,7 +115,7 @@ function PaymentScreen(props) {
           <Text style={styles.pay}>
             Pay via cash. <Text style={styles.pays}>See how it work</Text>
           </Text>
-        </View>
+        </View> */}
         <Text style={styles.paymentMethod}>Personal Info</Text>
         <View style={styles.personalBox}>
           <Text style={styles.textInputBox}>Full Name</Text>
@@ -113,7 +131,7 @@ function PaymentScreen(props) {
             style={styles.textInput}
           />
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text style={styles.textButton}>Pay Your Order</Text>
         </TouchableOpacity>
       </View>

@@ -2,9 +2,9 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    paddingTop: 50,
+    paddingTop: 30,
     justifyContent: 'center',
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
   textDesc1: {
     fontSize: 17,
@@ -87,8 +87,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     overflow: 'visible',
-    marginTop: 20,
-    marginBottom: 10,
+    marginTop: 10,
+    marginBottom: 15,
   },
   button: {
     marginRight: 15,
@@ -163,7 +163,8 @@ export default StyleSheet.create({
   },
   flex: {
     flexDirection: 'row',
-    padding: 20,
+    padding: 8,
+    marginTop: 10,
   },
   flex1: {
     flex: 1,
@@ -175,11 +176,14 @@ export default StyleSheet.create({
     backgroundColor: 'gainsboro',
     padding: 10,
     borderRadius: 12,
+    marginLeft: 20,
   },
   sort: {
     backgroundColor: 'gainsboro',
-    padding: 15,
+    padding: 10,
     marginRight: 12,
     borderRadius: 12,
+    paddingHorizontal: 15,
+    borderColor: 'gainsboro',
   },
 });

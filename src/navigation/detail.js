@@ -7,6 +7,7 @@ import Detail from '../screen/Detail';
 import Order from '../screen/Order';
 import Payment from '../screen/Payment';
 import Result from '../screen/Result';
+import Midtrans from '../screen/Midtrans';
 
 export default function DetailNavigator() {
   return (
@@ -35,6 +36,11 @@ export default function DetailNavigator() {
       <Stack.Screen
         component={Result}
         name="Result"
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        component={Midtrans}
+        name="Midtrans"
         options={{headerShown: false}}
       />
     </Stack.Navigator>

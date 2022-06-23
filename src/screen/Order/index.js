@@ -15,10 +15,11 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 function OrderScreen(props) {
+  const orderSeat = props.route.params.dataOrder;
+  const movie = props.route.params.movie;
   const listSeat = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
   const [selectedSeat, setSelectedSeat] = useState([]);
   const [reservedSeat, setReservedSeat] = useState(['A1', 'C7']);
-
   useEffect(() => {
     console.log(props.route.params);
   }, []);
@@ -42,9 +43,9 @@ function OrderScreen(props) {
     console.log(selectedSeat);
     props.navigation.navigate('DetailScreen', {
       screen: 'Payment',
+      params: {order: orderSeat, movie: movie, seat: selectedSeat},
     });
   };
-
   return (
     <ScrollView>
       <Header />
@@ -114,23 +115,25 @@ function OrderScreen(props) {
               source={require('../../assets/VectorCinema2.png')}
               style={styles.imageBox}
             />
-            <Text style={styles.cardPremiere}>CineOne21 Cinema</Text>
-            <Text style={styles.cardMovie}>Spider-Man: Homecoming</Text>
+            <Text style={styles.cardPremiere}>{orderSeat.premiere}</Text>
+            <Text style={styles.cardMovie}>{movie.name}</Text>
             <View style={styles.info}>
-              <Text style={styles.infoLeft}>Tuesday, 07 July 2020</Text>
-              <Text style={styles.infoRight}>02:00pm</Text>
+              <Text style={styles.infoLeft}>{orderSeat.dateBooking}</Text>
+              <Text style={styles.infoRight}>{orderSeat.timeBooking}</Text>
             </View>
             <View style={styles.info}>
               <Text style={styles.infoLeft}>One ticket price</Text>
-              <Text style={styles.infoRight}>$10</Text>
+              <Text style={styles.infoRight}>Rp.{orderSeat.price}</Text>
             </View>
             <View style={styles.info}>
               <Text style={styles.infoLeft}>Seat choosed</Text>
-              <Text style={styles.infoRight}>C4, C5, C6</Text>
+              <Text style={styles.infoRight}>{selectedSeat + ''}</Text>
             </View>
             <View style={styles.infoPrice}>
               <Text style={styles.infoLeftPrice}>Total Payment</Text>
-              <Text style={styles.infoRightPrice}>$30</Text>
+              <Text style={styles.infoRightPrice}>
+                Rp.{orderSeat.price * selectedSeat.length}
+              </Text>
             </View>
           </View>
         </View>

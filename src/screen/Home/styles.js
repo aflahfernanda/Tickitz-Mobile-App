@@ -24,7 +24,7 @@ export default StyleSheet.create({
   },
   backgroundColor: {
     backgroundColor: '#D6D8E7',
-    height: 480,
+    height: 510,
     paddingHorizontal: 20,
     paddingVertical: 30,
   },
@@ -51,7 +51,7 @@ export default StyleSheet.create({
   },
   imageCard: {
     width: '100%',
-    height: 180,
+    height: 200,
     resizeMode: 'stretch',
     marginBottom: 10,
   },

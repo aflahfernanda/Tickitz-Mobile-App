@@ -10,16 +10,32 @@ import styles from './styles';
 
 function HomeScreen(props) {
   const [movie, setMovie] = useState([]);
+  const [searchMovie, setSearchMovie] = useState([]);
+  const [searchRelease, setSearchRelease] = useState(0);
   const [pageInfo, setPageInfo] = useState([]);
   useEffect(() => {
     handleGetMovie();
   }, []);
+  useEffect(() => {
+    handleSearchMovie();
+  }, [searchRelease]);
   const handleGetMovie = async () => {
     try {
       const result = await axios.get(
-        'movie?page=1&limit=10&sort=&searchRelease=&searchName=',
+        'movie?page=1&limit=100&sort=&searchRelease=&searchName=',
       );
       setMovie(result.data.data);
+      setPageInfo(result.data.pagination);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+  const handleSearchMovie = async () => {
+    try {
+      const result = await axios.get(
+        `movie?page=1&limit=100&sort=&searchRelease=${searchRelease}&searchName=`,
+      );
+      setSearchMovie(result.data.data);
       setPageInfo(result.data.pagination);
     } catch (error) {
       console.log(error.response.data);
@@ -30,6 +46,9 @@ function HomeScreen(props) {
       screen: 'Detail',
       params: {id: id},
     });
+  };
+  const handleSearchRelease = name => {
+    setSearchRelease(name);
   };
   return (
     <ScrollView>
@@ -75,51 +94,83 @@ function HomeScreen(props) {
             <Text style={styles.viewAll}>View All</Text>
           </View>
           <ScrollView style={styles.scroll} horizontal>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              name="1"
+              onPress={name => handleSearchRelease(1)}>
               <Text style={styles.buttonText}>January</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={name => handleSearchRelease(2)}>
               <Text style={styles.buttonText}>February</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={name => handleSearchRelease(3)}>
               <Text style={styles.buttonText}>March</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={name => handleSearchRelease(4)}>
+              <Text style={styles.buttonText}>April</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={name => handleSearchRelease(5)}>
               <Text style={styles.buttonText}>May</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={name => handleSearchRelease(6)}>
               <Text style={styles.buttonText}>June</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={name => handleSearchRelease(7)}>
               <Text style={styles.buttonText}>July</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={name => handleSearchRelease(8)}>
               <Text style={styles.buttonText}>August</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={name => handleSearchRelease(9)}>
               <Text style={styles.buttonText}>September</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={name => handleSearchRelease(10)}>
               <Text style={styles.buttonText}>October</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={name => handleSearchRelease(11)}>
               <Text style={styles.buttonText}>November</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={name => handleSearchRelease(12)}>
               <Text style={styles.buttonText}>December</Text>
             </TouchableOpacity>
           </ScrollView>
           <View />
           <ScrollView style={styles.scroll} horizontal>
-            {movie.map(item => (
+            {searchMovie.map(item => (
               <View style={styles.cardUpcoming} key={item.id}>
                 <Image
-                  source={require('../../assets/spiderman.png')}
+                  source={{
+                    uri: `https://res.cloudinary.com/da776aoko/image/upload/v1651001489/${item.image}`,
+                  }}
                   style={styles.imageCard}
                 />
                 <Text style={styles.movieText}>{item.name}</Text>
                 <Text style={styles.movieText2}>{item.category}</Text>
-                <TouchableOpacity style={styles.buttonUpcoming}>
+                <TouchableOpacity
+                  style={styles.buttonUpcoming}
+                  onPress={id => handleDetail(item.id)}>
                   <Text style={styles.buttonViewAllText}>Detail</Text>
                 </TouchableOpacity>
               </View>
