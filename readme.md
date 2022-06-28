@@ -31,7 +31,6 @@ Website Application Booking Ticket| Mobile App Frontend Repository
 1. Download this Project or you can type `git clone https://github.com/aflahfernanda/Tickitz-Mobile-App.git`
 2. Open app's directory in CMD or Terminal
 3. Type `npm install` or `yarn install`
-4. Add .env in nextConfig.js
 
 ```sh
 URL_BACKEND: "https://project-paytickz.herokuapp.com/",
@@ -75,7 +74,7 @@ URL_CLOUDINARY: "https://res.cloudinary.com/da776aoko/image/upload/v1656419307/"
   <img src="./src/assets/readmePicture7.png" width="250" />
 </p>
 
-## ✍️ itJobs - Backend Link
+## ✍️ Tickitz - Backend Link
 
 https://github.com/aflahfernanda/paytickz-project
 
