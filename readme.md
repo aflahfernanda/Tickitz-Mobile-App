@@ -59,9 +59,11 @@ URL_CLOUDINARY: "https://res.cloudinary.com/da776aoko/image/upload/v1656419307/"
 
 ## 🔎 Preview Pages
 
-<summary>The title of the image group</summary><details>
 <img src="./src/assets/readmePicture1.png" alt="readmePicture1.png"" border="0">
 <img src="./src/assets/readmePicture2.png" alt="readmePicture1.png" border="0">
+
+<summary>Click Details To View More Preview</summary>
+<details>
 <img src="./src/assets/readmePicture3.png" alt="readmePicture1.png" border="0">
 <img src="./src/assets/readmePicture4.png" alt="readmePicture1.png" border="0">
 <img src="./src/assets/readmePicture5.png" alt="readmePicture1.png" border="0">
@@ -81,8 +83,6 @@ https://github.com/aflahfernanda/paytickz-project
 ## ⛏️ Built Using
 
 - [axios](https://www.npmjs.com/package/axios)
-- [bootstrap](https://www.npmjs.com/package/bootstrap)
-- [node-sass](https://www.npmjs.com/package/node-sass)
 - [qs](https://www.npmjs.com/package/qs)
 - [react-redux](https://www.npmjs.com/package/react-redux)
 - [redux](https://www.npmjs.com/package/redux)
