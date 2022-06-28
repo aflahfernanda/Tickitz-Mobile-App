@@ -59,26 +59,11 @@ URL_CLOUDINARY: "https://res.cloudinary.com/da776aoko/image/upload/v1656419307/"
 
 ## 🔎 Preview Pages
 
-<summary>Preview screen</summary>
-<img src="./src/assets/readmePicture1.png" alt="readmePicture1.png"" border="0">
-<img src="./src/assets/readmePicture2.png" alt="readmePicture1.png" border="0">
-
-<summary>Click Details To View More Preview</summary>
-<details>
-<img src="./src/assets/readmePicture3.png" alt="readmePicture1.png" border="0">
-<img src="./src/assets/readmePicture4.png" alt="readmePicture1.png" border="0">
-<img src="./src/assets/readmePicture5.png" alt="readmePicture1.png" border="0">
-<img src="./src/assets/readmePicture6.png" alt="readmePicture1.png" border="0">
-<img src="./src/assets/readmePicture7.png" alt="readmePicture1.png" border="0">
-<br>
-</details>
-
 <br>
 
-|                           **Team Leader** <br> Muhammad Thariq Farsha                           |                      **Team Leader** <br> Muhammad Thariq Farsha                      |                           **Front-End Developer** <br> Donny Wahyu                            |                 **Front-End Developer** <br> Abdul Qodir Jaelani                  |                     **Back-End Developer** <br> Jauhar Maknun Adib                      |                          **Back-End Developer**<br>Mohd.Aflah Fernandaa                           |
-| :---------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------: |
-|                      ![Team Leader Image](./src/assets/readmePicture1.png)                      |             ![Back-End Developer Image](./src/assets/readmePicture2.png)              |                 ![Front-End Developer Image](./src/assets/readmePicture6.png)                 |           ![Back-End Developer Image](./src/assets/readmePicture3.png)            |              ![Back-End Developer Image](./src/assets/readmePicture4.png)               |                   ![Back-End Developer Image](./src/assets/readmePicture5.png)                    |
-| <a href="https://github.com/thariqfarsha" target="_blank">`https://github.com/thariqfarsha`</a> | <a href="https://github.com/tbmanix" target="_blank">`https://github.com/tbmanix`</a> | <a href="https://github.com/donny17-bit" target="_blank">`https://github.com/donny17-bit`</a> | <a href="https://github.com/Qxtlp" target="_blank">`https://github.com/Qxtlp`</a> | <a href="https://github.com/foldadjo" target="_blank">`https://github.com/foldadjo`</a> | <a href="https://github.com/aflahfernanda" target="_blank">`https://github.com/aflahfernanda`</a> |
+|                    **Home Screen**                    |                 **Home Now Showing Screen**                  |                     **Order Seat Screen**                     |                    **List Movie Screen**                     |                   **Detail Movie Screen**                    |                     **Schedule Screen**                      |
+| :---------------------------------------------------: | :----------------------------------------------------------: | :-----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![Team Leader Image](./src/assets/readmePicture1.png) | ![Back-End Developer Image](./src/assets/readmePicture2.png) | ![Front-End Developer Image](./src/assets/readmePicture6.png) | ![Back-End Developer Image](./src/assets/readmePicture3.png) | ![Back-End Developer Image](./src/assets/readmePicture4.png) | ![Back-End Developer Image](./src/assets/readmePicture5.png) |
 
 ---
 
