@@ -8,7 +8,7 @@
   </p>
 
 <p align="center">
- <a href="https://ibb.co/cc1ThB8"><img src="./src/assets/Tickitz.png" alt="08-06-2022-14-51-13-REC" border="0" width="500px"></a>
+ <a href="https://ibb.co/cc1ThB8"><img src="./src/assets/Tickitz.png" alt="08-06-2022-14-51-13-REC" border="0" width="400px"></a>
 </p>
 
 ## About The Project
@@ -64,15 +64,16 @@ URL_CLOUDINARY: "https://res.cloudinary.com/da776aoko/image/upload/v1656419307/"
   <img src="./src/assets/readmePicture2.png" width="250" />
   <img src="./src/assets/readmePicture3.png" width="250" />
 </p>
-
 <br>
-
-|                    **Home Screen**                    |                              **Home Now Showing Screen**                              |                                     **Order Seat Screen**                                     |                               **List Movie Screen**                               |                                 **Detail Movie Screen**                                 |                                        **Schedule Screen**                                        |
-| :---------------------------------------------------: | :-----------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------: |
-| ![Team Leader Image](./src/assets/readmePicture1.png) |             ![Back-End Developer Image](./src/assets/readmePicture2.png)              |                 ![Front-End Developer Image](./src/assets/readmePicture6.png)                 |           ![Back-End Developer Image](./src/assets/readmePicture3.png)            |              ![Back-End Developer Image](./src/assets/readmePicture4.png)               |                   ![Back-End Developer Image](./src/assets/readmePicture5.png)                    |
-|                       <p> </p>                        | <a href="https://github.com/tbmanix" target="_blank">`https://github.com/tbmanix`</a> | <a href="https://github.com/donny17-bit" target="_blank">`https://github.com/donny17-bit`</a> | <a href="https://github.com/Qxtlp" target="_blank">`https://github.com/Qxtlp`</a> | <a href="https://github.com/foldadjo" target="_blank">`https://github.com/foldadjo`</a> | <a href="https://github.com/aflahfernanda" target="_blank">`https://github.com/aflahfernanda`</a> |
-
----
+<p float="left">
+  <img src="./src/assets/readmePicture4.png" width="250" />
+  <img src="./src/assets/readmePicture5.png" width="250" />
+  <img src="./src/assets/readmePicture6.png" width="250" />
+</p>
+<br>
+<p float="left">
+  <img src="./src/assets/readmePicture7.png" width="250" />
+</p>
 
 ## ✍️ itJobs - Backend Link
 
