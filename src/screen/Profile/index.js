@@ -59,45 +59,6 @@ function ProfileScreen(props) {
     mediaType: 'images',
     quality: 1,
   };
-  // const openCamera = () => {
-  //   const option = {
-  //     mediaType: 'photo',
-  //     quality: 1,
-  //   };
-  //   launchCamera(option, res => {
-  //     if (res.didCancel) {
-  //       console.log('user canceled');
-  //     } else if (res.errorCode) {
-  //       console.log(res.errorMessage);
-  //     } else {
-  //       const data = res.assets[0];
-  //       setImage(data);
-  //       setUpdateImageUser(data.fileName);
-  //       handleUpdateImage();
-  //       setChangeImage(true);
-  //     }
-  //   });
-  // };
-  // const openLibrary = () => {
-  //   const option = {
-  //     mediaType: 'images',
-  //     quality: 1,
-  //   };
-  //   launchImageLibrary(option, res => {
-  //     if (res.didCancel) {
-  //       console.log('user canceled');
-  //     } else if (res.errorCode) {
-  //       console.log(res.errorMessage);
-  //     } else {
-  //       const data = res.assets[0];
-  //       setImage(data);
-  //       console.log(data.uri);
-  //       setUpdateImageUser(data.fileName);
-  //       handleUpdateImage();
-  //       setChangeImage(true);
-  //     }
-  //   });
-  // };
   useEffect(() => {
     getdataUser();
   }, []);

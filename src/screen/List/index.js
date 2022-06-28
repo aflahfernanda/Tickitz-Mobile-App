@@ -21,6 +21,7 @@ function ListScreen(props) {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(10);
+  const [totalData, setTotalData] = useState(10);
   const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(false);
   const [last, setLast] = useState(false);
@@ -61,6 +62,20 @@ function ListScreen(props) {
           setData([...data, ...result.data.data]);
         }
         setTotalPage(result.data.pagination.totalPage);
+        setTotalData(result.data.pagination.totalData);
+      }
+      if (totalPage === 0) {
+        const result = await axios.get(
+          `movie?page=${page}&limit=4&sort=${sortName}&searchRelease=${searchRelease}&searchName=${searchName}`,
+        );
+        console.log(result.data.data);
+        if (page === 1) {
+          setData(result.data.data);
+        } else {
+          setData([...data, ...result.data.data]);
+        }
+        setTotalPage(result.data.pagination.totalPage);
+        setTotalData(result.data.pagination.totalData);
       } else {
         setLast(true);
       }
@@ -68,7 +83,7 @@ function ListScreen(props) {
       console.log(error);
     }
   };
-
+  console.log(totalPage);
   const handleRefresh = () => {
     console.log('REFRESH SCREEN');
     setPage(1);
@@ -141,16 +156,21 @@ function ListScreen(props) {
         onRefresh={handleRefresh}
         refreshing={refresh}
         onEndReached={handleLoadMore}
-        onEndReachedThreshold={0.1}
+        onEndReachedThreshold={1.0}
         ListFooterComponent={() =>
-          last ? (
+          totalData === 0 ? (
             <View>
               <Text>-- No more data --</Text>
               <Footer />
             </View>
           ) : loading ? (
             <ActivityIndicator size="large" color="blue" />
-          ) : null
+          ) : (
+            <View>
+              <Text>-- No more data --</Text>
+              <Footer />
+            </View>
+          )
         }
       />
     </View>

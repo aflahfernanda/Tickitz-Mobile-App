@@ -16,7 +16,6 @@ import Order from '../screen/Order';
 import Payment from '../screen/Payment';
 import Midtrans from '../screen/Midtrans';
 import Result from '../screen/Result';
-import Notification from '../screen/Notification';
 function HomeNavigator() {
   return (
     <Stack.Navigator initialRouteName="Home">
@@ -59,17 +58,6 @@ function ProfileNavigator() {
       <Stack.Screen
         component={Result}
         name="Result"
-        options={{headerShown: false}}
-      />
-    </Stack.Navigator>
-  );
-}
-function NotificationNavigator() {
-  return (
-    <Stack.Navigator initialRouteName="Notification">
-      <Stack.Screen
-        component={Notification}
-        name="Notification"
         options={{headerShown: false}}
       />
     </Stack.Navigator>
@@ -118,17 +106,6 @@ function AppNavigator() {
         name="ListNavigator"
         options={{
           title: 'List Movie',
-          header: props => <Header {...props} />,
-          drawerIcon: ({size, color}) => (
-            <Icon name="film" size={size} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        component={NotificationNavigator}
-        name="NotificationNavigator"
-        options={{
-          title: 'Notification',
           header: props => <Header {...props} />,
           drawerIcon: ({size, color}) => (
             <Icon name="film" size={size} color={color} />
