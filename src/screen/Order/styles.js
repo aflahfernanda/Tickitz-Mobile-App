@@ -135,4 +135,8 @@ export default StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
+  imageCardsBox: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
 });

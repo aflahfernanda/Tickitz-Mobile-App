@@ -102,6 +102,55 @@ const user = (state = initialState, action) => {
         msg: action.payload.data,
       };
     }
+    case 'DELETE_IMAGE_PENDING': {
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    }
+    case 'DELETE_IMAGE_FULFILLED': {
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        msg: action.payload.data,
+      };
+    }
+    case 'DELETE_IMAGE_REJECTED': {
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        msg: action.payload.data,
+      };
+    }
+    case 'GET_BOOKING_PENDING': {
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+        msg: '',
+      };
+    }
+    case 'GET_BOOKING_FULFILLED': {
+      console.log(action.payload);
+      return {
+        ...state,
+        isLoading: false,
+        data: {...action.payload.data.data[0], role: 'admin'},
+        msg: action.payload.data.msg,
+      };
+    }
+    case 'GET_BOOKING_REJECTED': {
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        data: {},
+        msg: action.payload.data.msg,
+      };
+    }
     default: {
       return state;
     }

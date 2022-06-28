@@ -7,20 +7,23 @@ import {
   TouchableOpacity,
   Button,
   Image,
+  ScrollView,
 } from 'react-native';
 import styles from './styles';
 import axios from '../../utils/axios';
-
-function ResetScreen(props) {
+function ForgotScreen(props) {
   const [form, setForm] = useState({
-    email: '',
+    keyChangePassword: '',
+    newPassword: '',
+    confirmPassword: '',
   });
   const handleSignin = async () => {
     try {
-      const result = await axios.post('auth/forgotPassword', form);
+      console.log(form);
+      const result = await axios.patch('auth/resetPassword', form);
       alert(result.data.msg);
       props.navigation.navigate('AuthScreen', {
-        screen: 'Forgot',
+        screen: 'Login',
       });
     } catch (error) {
       console.log(error);
@@ -39,7 +42,7 @@ function ResetScreen(props) {
   // };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View>
         <Image
           source={require('../../assets/Tickitz.png')}
@@ -47,24 +50,36 @@ function ResetScreen(props) {
         />
       </View>
       <View>
-        <Text style={styles.signIn_Header}>Reset Password</Text>
+        <Text style={styles.signIn_Header}>Forgot Password</Text>
         <Text style={styles.signIn_Description}>
           we'll send a link to your email shortly
         </Text>
       </View>
       <View>
-        <Text style={styles.inputName}>Email</Text>
+        <Text style={styles.inputName}>OTP Key</Text>
         <TextInput
-          placeholder="Write Your Email"
+          placeholder="Write Your OTP Key"
           style={styles.inputBox}
-          onChangeText={text => handleChangeForm(text, 'email')}
+          onChangeText={text => handleChangeForm(text, 'keyChangePassword')}
+        />
+        <Text style={styles.inputName}>New Password</Text>
+        <TextInput
+          placeholder="Write Your New Password"
+          style={styles.inputBox}
+          onChangeText={text => handleChangeForm(text, 'newPassword')}
+        />
+        <Text style={styles.inputName}>Confirm Password</Text>
+        <TextInput
+          placeholder="Write Your Confirm Password"
+          style={styles.inputBox}
+          onChangeText={text => handleChangeForm(text, 'confirmPassword')}
         />
       </View>
       <TouchableOpacity onPress={handleSignin} style={styles.buttonLogin}>
         <Text style={styles.buttonText}>Send</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }
 
-export default ResetScreen;
+export default ForgotScreen;

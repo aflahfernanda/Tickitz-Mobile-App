@@ -80,10 +80,10 @@ export default StyleSheet.create({
   },
   buttonLogout: {
     backgroundColor: '#5F2EEA',
-    paddingVertical: 20,
+    paddingVertical: 10,
     borderRadius: 12,
     marginTop: 30,
-    marginHorizontal: 50,
+    marginHorizontal: 70,
   },
   buttonText: {
     textAlign: 'center',

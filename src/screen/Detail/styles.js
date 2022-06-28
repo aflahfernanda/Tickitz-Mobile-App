@@ -17,10 +17,14 @@ export default StyleSheet.create({
     marginHorizontal: 20,
   },
   imageCard: {
-    width: 100,
+    width: 160,
+    height: '100%',
+  },
+  imageBoxCard: {
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   imageCards: {
-    marginHorizontal: 100,
     marginBottom: 20,
   },
   title: {
@@ -61,18 +65,15 @@ export default StyleSheet.create({
     marginBottom: 30,
   },
   chooseDate: {
-    textAlign: 'center',
-    justifyContent: 'center',
-    marginHorizontal: 30,
     borderRadius: 8,
     backgroundColor: '#EFF0F6',
     paddingVertical: 10,
     paddingHorizontal: 50,
-    width: 300,
   },
   textBox: {
     textAlign: 'center',
     fontSize: 15,
+    color: 'black',
   },
   timeCard: {
     backgroundColor: 'whitesmoke',
@@ -96,7 +97,16 @@ export default StyleSheet.create({
     paddingHorizontal: 15,
     borderRadius: 4,
     marginTop: 20,
-    marginRight: 20,
+    marginRight: 12,
+    marginEnd: 12,
+  },
+  timesButtonClick: {
+    backgroundColor: 'black',
+    paddingHorizontal: 15,
+    borderRadius: 4,
+    marginTop: 20,
+    marginRight: 12,
+    marginEnd: 12,
   },
   timesText: {
     color: 'white',
@@ -116,5 +126,39 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontSize: 17,
     color: 'white',
+  },
+  sort: {
+    backgroundColor: '#EFF0F6',
+    borderColor: '#EFF0F6',
+    marginBottom: 20,
+  },
+  viewAll: {
+    borderRadius: 8,
+    backgroundColor: '#5F2EEA',
+    paddingVertical: 10,
+    paddingHorizontal: 50,
+    marginTop: 20,
+    marginHorizontal: 50,
+  },
+  textViewAll: {
+    textAlign: 'center',
+    color: 'white',
+  },
+  inputSort: {
+    textAlign: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 30,
+    borderRadius: 8,
+    paddingVertical: 5,
+    width: 300,
+    marginBottom: 20,
+    borderColor: '#EFF0F6',
+  },
+  paginationInfo: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 15,
+    color: '#5F2EEA',
+    fontWeight: 'bold',
   },
 });

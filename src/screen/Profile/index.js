@@ -4,37 +4,40 @@ import {
   View,
   Text,
   Image,
-  StyleSheet,
   ScrollView,
   TextInput,
   TouchableOpacity,
   RefreshControl,
+  Alert,
 } from 'react-native';
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
-import axios from '../../utils/axios';
 import {useDispatch} from 'react-redux';
 import {
   getUserById,
   updatePassword,
   updateProfile,
   updateImage,
+  getBookingByUserById,
+  deleteImage,
 } from '../../store/actions/user';
 import styles from './styles';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 function ProfileScreen(props) {
   const dispatch = useDispatch();
-
   const [user, setUser] = useState([]);
+  const [bookings, setBooking] = useState([]);
   const [history, setHistory] = useState(true);
-  const [isUpdate, setIsUpdate] = useState(false);
-  const [isPassword, setIspassword] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(true);
+  const [isPassword, setIspassword] = useState(true);
+  const [date, setDate] = useState(new Date());
   const [image, setImage] = useState(null);
   const [updateImageUser, setUpdateImageUser] = useState({
     image: '',
   });
-  const [changeImage, setChangeImage] = useState(false);
+  console.log(updateImageUser);
+  console.log(updateImageUser);
+  const [changeImage, setChangeImage] = useState(true);
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -94,6 +97,20 @@ function ProfileScreen(props) {
   useEffect(() => {
     getdataUser();
   }, []);
+  useEffect(() => {
+    getbookingUser();
+  }, []);
+  const getbookingUser = async () => {
+    try {
+      const getId = await AsyncStorage.getItem('id');
+      const booking = await dispatch(getBookingByUserById(getId));
+      setBooking(booking.action.payload.data.data);
+      setDate();
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+  console.log(bookings);
   const getdataUser = async () => {
     try {
       const getId = await AsyncStorage.getItem('id');
@@ -116,6 +133,7 @@ function ProfileScreen(props) {
       formData.append(data, form[data]);
     }
     await dispatch(updateProfile(getId, form));
+    Alert.alert('Update Succes', 'Succes Update Profile');
     setIsUpdate(true);
     getdataUser();
   };
@@ -125,24 +143,48 @@ function ProfileScreen(props) {
     for (const data in form) {
       formData.append(data, form[data]);
     }
-    await dispatch(updatePassword('2', password));
+    await dispatch(updatePassword(getId, password));
+    Alert.alert('Update Succes', 'Succes Update Password');
     setIspassword(true);
     getdataUser();
   };
   const handleUpdateImage = async () => {
-    const formData = new FormData();
-    for (const data in updateImageUser) {
-      formData.append(data, updateImageUser[data]);
+    try {
+      const getId = await AsyncStorage.getItem('id');
+      const formData = new FormData();
+      for (const data in updateImageUser) {
+        formData.append(data, updateImageUser[data]);
+      }
+      await dispatch(updateImage(getId, formData));
+      Alert.alert('Update Succes', 'Succes Update Image');
+    } catch (error) {
+      console.log(error.response);
     }
-    await dispatch(updateImage('2', formData));
+  };
+  const handleLogout = async () => {
+    try {
+      alert('Logout');
+      await AsyncStorage.clear();
+      props.navigation.navigate('AuthScreen', {
+        screen: 'Login',
+      });
+    } catch (error) {}
+  };
+  const handleDelete = async () => {
+    try {
+      const getId = await AsyncStorage.getItem('id');
+      await dispatch(deleteImage('4ec9d0a7-2004-4483-9037-4fa8760a395c'));
+      Alert.alert('Delete Succes', 'Succes Delete Image');
+      setChangeImage(true);
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
   const historyPage = () => {
     setHistory(false);
   };
-  const handleResultTicket = () => {
-    props.navigation.navigate('DetailScreen', {
-      screen: 'Result',
-    });
+  const handleResultTicket = id => {
+    props.navigation.navigate('Result', {id: id});
   };
   const Update = () => {
     setIsUpdate(true);
@@ -153,8 +195,10 @@ function ProfileScreen(props) {
   const ImageChange = () => {
     setChangeImage(true);
   };
+  console.log(bookings);
   return (
     <ScrollView
+      stickyHeaderIndices={[0]}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }>
@@ -180,7 +224,8 @@ function ProfileScreen(props) {
             </TouchableOpacity>
           </View>
         )}
-
+      </View>
+      <View>
         {history ? (
           <View style={styles.container}>
             <View style={styles.cardProfile}>
@@ -190,7 +235,9 @@ function ProfileScreen(props) {
                 <Image source={{uri: image.uri}} style={styles.imageBoxs} />
               ) : (
                 <Image
-                  source={require('../../assets/spiderman.png')}
+                  source={{
+                    uri: `https://res.cloudinary.com/da776aoko/image/upload/v1651001489/${user.image}`,
+                  }}
                   style={styles.imageBoxs}
                 />
               )}
@@ -219,6 +266,13 @@ function ProfileScreen(props) {
                       Open Galery
                     </Text>
                   </TouchableOpacity>
+                  <TouchableOpacity style={styles.buttonProfile}>
+                    <Text
+                      style={styles.buttonTextProfile}
+                      onPress={handleDelete}>
+                      Delete Image
+                    </Text>
+                  </TouchableOpacity>
                   <TouchableOpacity style={styles.buttonProfilecancel}>
                     <Text
                       style={styles.buttonTextProfilecancel}
@@ -233,7 +287,9 @@ function ProfileScreen(props) {
                 {user.firstName + ' ' + user.lastName}
               </Text>
               <Text style={styles.location}>{user.email}</Text>
-              <TouchableOpacity style={styles.buttonLogout}>
+              <TouchableOpacity
+                style={styles.buttonLogout}
+                onPress={handleLogout}>
                 <Text style={styles.buttonText}>Logout</Text>
               </TouchableOpacity>
             </View>
@@ -343,38 +399,32 @@ function ProfileScreen(props) {
           </View>
         ) : (
           <View style={styles.container}>
-            <View style={styles.cardProfile}>
-              <Image
-                source={require('../../assets/VectorCinema2.png')}
-                style={styles.ticketResultImage}
-              />
-              <Text style={styles.ticketResultDate}>
-                Tuesday, 07 July 2020 - 04:30pm
-              </Text>
-              <Text style={styles.ticketResultMovie}>
-                Spider-Man: Homecoming
-              </Text>
-              <TouchableOpacity style={styles.ticketResultButton}>
-                <Text
-                  style={styles.ticketResultButtonText}
-                  onPress={handleResultTicket}>
-                  Ticket In Active
+            {bookings.map(item => (
+              <View style={styles.cardProfile} key={item.id}>
+                <Image
+                  source={
+                    item.premiere === 'hiflix'
+                      ? require('../../assets/VectorCinema3.png')
+                      : item.premiere === 'CineOne21'
+                      ? require('../../assets/VectorCinema2.png')
+                      : require('../../assets/VectorCinema1.png')
+                  }
+                  style={styles.ticketResultImage}
+                />
+                <Text style={styles.ticketResultDate}>
+                  {item.dateBooking.split('T')[0]}-{' '}
+                  {item.timeBooking.split('.')[0]}
                 </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.cardProfile}>
-              <Image
-                source={require('../../assets/VectorCinema3.png')}
-                style={styles.ticketResultImage}
-              />
-              <Text style={styles.ticketResultDate}>
-                Monday, 14 June 2020 - 02:00pm
-              </Text>
-              <Text style={styles.ticketResultMovie}>Avengers: End Game</Text>
-              <TouchableOpacity style={styles.ticketResultButtonUsed}>
-                <Text style={styles.ticketResultButtonText}>Ticket Used</Text>
-              </TouchableOpacity>
-            </View>
+                <Text style={styles.ticketResultMovie}>{item.name}</Text>
+                <TouchableOpacity style={styles.ticketResultButton}>
+                  <Text
+                    style={styles.ticketResultButtonText}
+                    onPress={id => handleResultTicket(item.id)}>
+                    > Ticket In Active
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ))}
           </View>
         )}
       </View>

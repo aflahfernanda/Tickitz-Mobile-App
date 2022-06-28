@@ -5,7 +5,7 @@ export const getDataMovie = (page, limit, search, sort, searchRelease) => {
   return {
     type: 'GET_DATA_MOVIE',
     payload: axios.get(
-      `movie?page=${page}&limit=${limit}&sort='${sort}'&searchRelease='${searchRelease}'&searchName='${search}'`,
+      `movie?page=1&limit=100&sort=&searchRelease=${searchRelease}&searchName=`,
     ),
   };
 };

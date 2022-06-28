@@ -2,28 +2,49 @@ import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
-  Button,
   FlatList,
   ScrollView,
   Image,
+  Alert,
+  Button,
 } from 'react-native';
 import Seat from '../../components/seat';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
+import {useDispatch} from 'react-redux';
+import {getSeatBooking} from '../../store/actions/booking';
+import axios from '../../utils/axios';
 function OrderScreen(props) {
+  const dispatch = useDispatch();
   const orderSeat = props.route.params.dataOrder;
   const movie = props.route.params.movie;
+  const [seatBook, setSeatBook] = useState([]);
   const listSeat = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
   const [selectedSeat, setSelectedSeat] = useState([]);
-  const [reservedSeat, setReservedSeat] = useState(['A1', 'C7']);
-  useEffect(() => {
-    console.log(props.route.params);
-  }, []);
 
+  useEffect(() => {
+    getseatBooking();
+  }, []);
+  const [reservedSeat, setReservedSeat] = useState([]);
+  console.log(reservedSeat);
+  const getseatBooking = async () => {
+    try {
+      // const result = await axios.get(
+      //   'booking?scheduleId=12&dateBooking=&timeBooking=09:00',
+      // );
+      // console.log(result.data.data);
+      const user = await dispatch(
+        getSeatBooking(orderSeat.scheduleId, orderSeat.timeBooking),
+      );
+      setSeatBook(user.action.payload.data.data);
+      setReservedSeat(user.action.payload.data.data.map(item => item.seat));
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+  console.log(seatBook);
   const handleSelectedSeat = data => {
     if (selectedSeat.includes(data)) {
       const deleteSeat = selectedSeat.filter(el => {
@@ -41,14 +62,14 @@ function OrderScreen(props) {
 
   const handleBookingSeat = () => {
     console.log(selectedSeat);
-    props.navigation.navigate('DetailScreen', {
-      screen: 'Payment',
-      params: {order: orderSeat, movie: movie, seat: selectedSeat},
+    props.navigation.navigate('Payment', {
+      order: orderSeat,
+      movie: movie,
+      seat: selectedSeat,
     });
   };
   return (
     <ScrollView>
-      <Header />
       <View style={styles.container}>
         <Text style={styles.textHeader}>Choose Your Seat</Text>
         <View style={styles.containerSeat}>
@@ -111,10 +132,18 @@ function OrderScreen(props) {
         <View>
           <Text style={styles.orderHeader}>Order Info</Text>
           <View style={styles.card}>
-            <Image
-              source={require('../../assets/VectorCinema2.png')}
-              style={styles.imageBox}
-            />
+            <View style={styles.imageCardsBox}>
+              <Image
+                source={
+                  orderSeat.premiere === 'hiflix'
+                    ? require('../../assets/VectorCinema3.png')
+                    : orderSeat.premiere === 'CineOne21'
+                    ? require('../../assets/VectorCinema2.png')
+                    : require('../../assets/VectorCinema1.png')
+                }
+                style={styles.imageCards}
+              />
+            </View>
             <Text style={styles.cardPremiere}>{orderSeat.premiere}</Text>
             <Text style={styles.cardMovie}>{movie.name}</Text>
             <View style={styles.info}>

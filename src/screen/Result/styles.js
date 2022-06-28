@@ -19,11 +19,14 @@ export default StyleSheet.create({
     borderRadius: 15,
   },
   qrCode: {
-    marginHorizontal: 33,
     resizeMode: 'stretch',
     width: 250,
     height: 250,
     marginBottom: 90,
+  },
+  qrCodeContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   textFlex: {
     flexDirection: 'row',

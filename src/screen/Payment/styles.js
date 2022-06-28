@@ -82,4 +82,52 @@ export default StyleSheet.create({
     fontSize: 15,
     color: 'white',
   },
+  card: {
+    backgroundColor: 'white',
+    padding: 25,
+    borderRadius: 12,
+    justifyContent: 'center',
+    marginBottom: 30,
+  },
+  imageCardsBox: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  cardPremiere: {
+    textAlign: 'center',
+    fontSize: 25,
+    color: 'black',
+    marginTop: 20,
+  },
+  cardMovie: {
+    textAlign: 'center',
+    fontSize: 15,
+    marginTop: 10,
+    marginBottom: 20,
+  },
+  info: {
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  infoLeft: {
+    fontSize: 15,
+  },
+  infoRight: {
+    fontSize: 15,
+    color: 'black',
+  },
+  infoPrice: {
+    marginTop: 40,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  infoLeftPrice: {
+    fontSize: 18,
+    color: 'black',
+  },
+  infoRightPrice: {
+    fontSize: 25,
+    color: '#5F2EEA',
+  },
 });

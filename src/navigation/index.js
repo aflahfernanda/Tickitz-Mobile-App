@@ -35,13 +35,13 @@ export default function MainStackNavigator() {
             headerShown: false,
           }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           component={DetailScreen}
           name="DetailScreen"
           options={{
             headerShown: false,
           }}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

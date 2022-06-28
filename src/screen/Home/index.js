@@ -1,23 +1,41 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, StyleSheet, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  RefreshControl,
+  ActivityIndicator,
+} from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import Footer from '../../components/Footer';
 
 import axios from '../../utils/axios';
-
+import {getDataMovie} from '../../store/actions/movie';
 import styles from './styles';
 
 function HomeScreen(props) {
+  const [data, setData] = useState([]);
   const [movie, setMovie] = useState([]);
   const [searchMovie, setSearchMovie] = useState([]);
-  const [searchRelease, setSearchRelease] = useState(0);
+  const [searchRelease, setSearchRelease] = useState('');
+  const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(10);
   const [pageInfo, setPageInfo] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [last, setLast] = useState(false);
+  const [loadMore, setLoadMore] = useState(false);
   useEffect(() => {
-    handleGetMovie();
+    setTimeout(() => {
+      handleGetMovie();
+    }, 100);
   }, []);
+
   useEffect(() => {
-    handleSearchMovie();
+    setTimeout(() => {
+      handleSearchMovie();
+    }, 100);
   }, [searchRelease]);
   const handleGetMovie = async () => {
     try {
@@ -41,17 +59,28 @@ function HomeScreen(props) {
       console.log(error.response.data);
     }
   };
+
   const handleDetail = id => {
-    props.navigation.navigate('DetailScreen', {
-      screen: 'Detail',
-      params: {id: id},
-    });
+    props.navigation.navigate('Detail', {id: id});
   };
   const handleSearchRelease = name => {
     setSearchRelease(name);
   };
+  const handleRefresh = () => {
+    console.log('REFRESH SCREEN');
+    setPage(1);
+    setLast(false);
+    if (page !== 1) {
+      setRefresh(true);
+    } else {
+      handleGetMovie();
+    }
+  };
   return (
-    <ScrollView>
+    <ScrollView
+      refreshControl={
+        <RefreshControl onRefresh={handleRefresh} refreshing={refresh} />
+      }>
       <View style={styles.container}>
         <Text style={styles.textDesc1}>Nearest Cinema,Newest Movie.</Text>
         <Text style={styles.textDesc2}>Find Out Now !</Text>
@@ -94,6 +123,12 @@ function HomeScreen(props) {
             <Text style={styles.viewAll}>View All</Text>
           </View>
           <ScrollView style={styles.scroll} horizontal>
+            <TouchableOpacity
+              style={styles.button}
+              name=""
+              onPress={name => handleSearchRelease('')}>
+              <Text style={styles.buttonText}>All Month</Text>
+            </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
               name="1"
@@ -158,23 +193,29 @@ function HomeScreen(props) {
           </ScrollView>
           <View />
           <ScrollView style={styles.scroll} horizontal>
-            {searchMovie.map(item => (
-              <View style={styles.cardUpcoming} key={item.id}>
-                <Image
-                  source={{
-                    uri: `https://res.cloudinary.com/da776aoko/image/upload/v1651001489/${item.image}`,
-                  }}
-                  style={styles.imageCard}
-                />
-                <Text style={styles.movieText}>{item.name}</Text>
-                <Text style={styles.movieText2}>{item.category}</Text>
-                <TouchableOpacity
-                  style={styles.buttonUpcoming}
-                  onPress={id => handleDetail(item.id)}>
-                  <Text style={styles.buttonViewAllText}>Detail</Text>
-                </TouchableOpacity>
+            {searchMovie.length == 0 ? (
+              <View style={styles.no}>
+                <Text style={styles.noData}>----No Data Found----</Text>
               </View>
-            ))}
+            ) : (
+              searchMovie.map(item => (
+                <View style={styles.cardUpcoming} key={item.id}>
+                  <Image
+                    source={{
+                      uri: `https://res.cloudinary.com/da776aoko/image/upload/v1651001489/${item.image}`,
+                    }}
+                    style={styles.imageCard}
+                  />
+                  <Text style={styles.movieText}>{item.name}</Text>
+                  <Text style={styles.movieText2}>{item.category}</Text>
+                  <TouchableOpacity
+                    style={styles.buttonUpcoming}
+                    onPress={id => handleDetail(item.id)}>
+                    <Text style={styles.buttonViewAllText}>Detail</Text>
+                  </TouchableOpacity>
+                </View>
+              ))
+            )}
           </ScrollView>
         </View>
       </View>

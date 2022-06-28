@@ -15,6 +15,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import axios from '../../utils/axios';
 import Footer from '../../components/Footer';
 import styles from './styles';
+import ListHeader from '../../components/ListHeader';
 
 function ListScreen(props) {
   const [data, setData] = useState([]);
@@ -25,7 +26,7 @@ function ListScreen(props) {
   const [last, setLast] = useState(false);
   const [loadMore, setLoadMore] = useState(false);
 
-  const [searchRelease, setSearchRelease] = useState(0);
+  const [searchRelease, setSearchRelease] = useState('');
   const [searchName, setSearchName] = useState('');
   const [openDropdown, setOpenDrodown] = useState(false);
   const [value, setValue] = useState(null);
@@ -34,9 +35,13 @@ function ListScreen(props) {
     {label: 'Z-A', value: 'name DESC'},
   ]);
   useEffect(() => {
+    console.log('getData');
+    getDataMovie();
+  }, []);
+  useEffect(() => {
     setTimeout(() => {
       getDataMovie();
-    }, 2000);
+    }, 1000);
   }, [page, searchRelease, searchName, value]);
 
   const getDataMovie = async () => {
@@ -46,8 +51,9 @@ function ListScreen(props) {
       setLoadMore(false);
       if (page <= totalPage) {
         const result = await axios.get(
-          `movie?page=1&limit=4&sort=${value}&searchRelease=${searchRelease}&searchName=${searchName}`,
+          `movie?page=${page}&limit=4&sort=${value}&searchRelease=${searchRelease}&searchName=${searchName}`,
         );
+        console.log(result.data.data);
         if (page === 1) {
           setData(result.data.data);
         } else {
@@ -94,110 +100,25 @@ function ListScreen(props) {
     setSearchName(nameMovie);
     console.log(nameMovie);
   };
-  console.log(value);
-  const ListHeader = () => {
-    return (
-      <>
-        <View style={styles.container}>
-          <Text style={styles.nowShowing}>List Movie</Text>
-        </View>
-        <View style={styles.flex}>
-          <View style={styles.flex1}>
-            <DropDownPicker
-              open={openDropdown}
-              value={value}
-              items={items}
-              setOpen={setOpenDrodown}
-              setValue={setValue}
-              setItems={setItems}
-              style={styles.sort}
-            />
-          </View>
-          <View style={styles.flex2}>
-            <TextInput
-              placeholder="search movie name.."
-              style={styles.textInputBoxs}
-              onChangeText={nameMovie => handleSearchName(nameMovie)}
-            />
-          </View>
-        </View>
-        <ScrollView style={styles.scroll} horizontal>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={name => handleSearchRelease('')}>
-            <Text style={styles.buttonText}>All Month</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={name => handleSearchRelease('1')}>
-            <Text style={styles.buttonText}>January</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={name => handleSearchRelease('2')}>
-            <Text style={styles.buttonText}>February</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={name => handleSearchRelease('3')}>
-            <Text style={styles.buttonText}>March</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={name => handleSearchRelease('4')}>
-            <Text style={styles.buttonText}>April</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={name => handleSearchRelease('5')}>
-            <Text style={styles.buttonText}>May</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={name => handleSearchRelease('6')}>
-            <Text style={styles.buttonText}>June</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={name => handleSearchRelease('7')}>
-            <Text style={styles.buttonText}>July</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={name => handleSearchRelease('8')}>
-            <Text style={styles.buttonText}>August</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={name => handleSearchRelease('9')}>
-            <Text style={styles.buttonText}>September</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={name => handleSearchRelease('10')}>
-            <Text style={styles.buttonText}>October</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={name => handleSearchRelease('11')}>
-            <Text style={styles.buttonText}>November</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={name => handleSearchRelease('12')}>
-            <Text style={styles.buttonText}>December</Text>
-          </TouchableOpacity>
-        </ScrollView>
-      </>
-    );
+  const handleSortMovie = items => {
+    setSearchName(items);
+    console.log(items);
   };
-
-  console.log(refresh);
+  const handleDetail = id => {
+    props.navigation.navigate('Detail', {id: id});
+  };
   return (
     <View style={styles.row}>
       <FlatList
         data={data}
-        ListHeaderComponent={ListHeader}
+        numColumns="2"
+        ListHeaderComponent={
+          <ListHeader
+            handleSearchRelease={handleSearchRelease}
+            handleSearchName={handleSearchName}
+            handleSortMovie={handleSortMovie}
+          />
+        }
         keyExtractor={item => item.id}
         renderItem={({item}) => (
           <View style={styles.cardUpcoming} key={item.id}>
@@ -209,7 +130,9 @@ function ListScreen(props) {
             />
             <Text style={styles.movieText}>{item.name}</Text>
             <Text style={styles.movieText2}>{item.category}</Text>
-            <TouchableOpacity style={styles.buttonUpcoming}>
+            <TouchableOpacity
+              style={styles.buttonUpcoming}
+              onPress={id => handleDetail(item.id)}>
               <Text style={styles.buttonViewAllText}>Detail</Text>
             </TouchableOpacity>
           </View>

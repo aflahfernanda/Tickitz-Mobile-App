@@ -28,7 +28,7 @@ function RegisterScreen(props) {
       alert(result.data.msg);
 
       setResult(result.data.msg);
-      props.navigation.navigate('AppScreen', {
+      props.navigation.navigate('AuthScreen', {
         screen: 'Login',
       });
     } catch (error) {

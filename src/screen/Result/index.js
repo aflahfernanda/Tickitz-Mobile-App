@@ -9,54 +9,74 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-
+import {getIdBooking} from '../../store/actions/booking';
 import axios from '../../utils/axios';
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
 import styles from './styles';
-
+import {useDispatch} from 'react-redux';
 function ResultScreen(props) {
-  const [history, setHistory] = useState(true);
-  const historyPage = () => {
-    setHistory(false);
+  const dispatch = useDispatch();
+  const [data, setData] = useState([]);
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [seat, setSeat] = useState([]);
+  const dataDate = date.split('T')[0];
+  const dataTime = time.split('.')[0];
+  const id = props.route.params.id;
+  useEffect(() => {
+    getbookingId();
+  }, []);
+  const getbookingId = async () => {
+    try {
+      const booking = await dispatch(getIdBooking(id));
+      setSeat(booking.action.payload.data.data.seatResult);
+      setData(booking.action.payload.data.data[0]);
+      setDate(booking.action.payload.data.data[0].dateBooking);
+      setTime(booking.action.payload.data.data[0].timeBooking);
+    } catch (error) {
+      console.log(error.response);
+    }
   };
   return (
     <ScrollView>
-      <Header />
       <View style={styles.container}>
         <View style={styles.cardTicket}>
-          <Image
-            source={require('../../assets/QR.png')}
-            style={styles.qrCode}
-          />
+          <View style={styles.qrCodeContainer}>
+            <Image
+              source={require('../../assets/QR.png')}
+              style={styles.qrCode}
+            />
+          </View>
           <View style={styles.textFlex}>
             <View style={styles.textFlex1}>
               <Text style={styles.detailTitle}>Movie</Text>
-              <Text style={styles.detailInfo}>Spider-Man</Text>
+              <Text style={styles.detailInfo}>{data.name}</Text>
             </View>
             <View style={styles.textFlex2}>
               <Text style={styles.detailTitle}>Category</Text>
-              <Text style={styles.detailInfo}>Action</Text>
+              <Text style={styles.detailInfo}>{data.category}</Text>
             </View>
           </View>
           <View style={styles.textFlex}>
             <View style={styles.textFlex1}>
               <Text style={styles.detailTitle}>Date</Text>
-              <Text style={styles.detailInfo}>07 Jul</Text>
+              <Text style={styles.detailInfo}>{dataDate}</Text>
             </View>
             <View style={styles.textFlex2}>
               <Text style={styles.detailTitle}>Time</Text>
-              <Text style={styles.detailInfo}>2:00pm</Text>
+              <Text style={styles.detailInfo}>{dataTime}</Text>
             </View>
           </View>
           <View style={styles.textFlex}>
             <View style={styles.textFlex1}>
               <Text style={styles.detailTitle}>Count</Text>
-              <Text style={styles.detailInfo}>3 pcs</Text>
+              <Text style={styles.detailInfo}>{data.totalTicket} pcs</Text>
             </View>
             <View style={styles.textFlex2}>
               <Text style={styles.detailTitle}>Seats</Text>
-              <Text style={styles.detailInfo}>C4, C5, C6</Text>
+              <Text style={styles.detailInfo}>
+                {seat.map(item => item.seat + ',')}
+              </Text>
             </View>
           </View>
           <View style={styles.textFlexs}>
@@ -64,7 +84,7 @@ function ResultScreen(props) {
               <Text style={styles.detailInfos}>Total</Text>
             </View>
             <View style={styles.textFlex2}>
-              <Text style={styles.detailInfos}>$30.00</Text>
+              <Text style={styles.detailInfos}>Rp.{data.totalPayment}</Text>
             </View>
           </View>
         </View>

@@ -7,9 +7,7 @@ export default function Header(props) {
     props.navigation.openDrawer();
   };
   const handleHome = () => {
-    props.navigation.navigate('AppScreen', {
-      screen: 'Home',
-    });
+    props.navigation.navigate('Home');
   };
   return (
     <View style={styles.header}>

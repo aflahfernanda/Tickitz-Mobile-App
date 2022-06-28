@@ -8,7 +8,7 @@ export default StyleSheet.create({
   },
   textDesc1: {
     fontSize: 17,
-    color: ' #A0A3BD',
+    color: '#A0A3BD',
   },
   textDesc2: {
     fontSize: 40,
@@ -24,7 +24,7 @@ export default StyleSheet.create({
   },
   backgroundColor: {
     backgroundColor: '#D6D8E7',
-    height: 510,
+    height: 530,
     paddingHorizontal: 20,
     paddingVertical: 30,
   },
@@ -51,7 +51,7 @@ export default StyleSheet.create({
   },
   imageCard: {
     width: '100%',
-    height: 200,
+    height: 220,
     resizeMode: 'stretch',
     marginBottom: 10,
   },
@@ -154,5 +154,10 @@ export default StyleSheet.create({
     marginTop: 30,
     fontSize: 14,
     marginBottom: 30,
+  },
+  noData: {
+    textAlign: 'center',
+    flex: 1,
+    fontSize: 18,
   },
 });
