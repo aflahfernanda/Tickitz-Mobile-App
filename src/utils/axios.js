@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const axiosApiIntances = axios.create({
   // baseURL: 'http://192.168.0.108:3001/',
   baseURL: 'https://project-paytickz.herokuapp.com/',
+  // baseURL: process.env.API_KEY,
 });
 
 // Add a request interceptor
