@@ -59,12 +59,18 @@ URL_CLOUDINARY: "https://res.cloudinary.com/da776aoko/image/upload/v1656419307/"
 
 ## 🔎 Preview Pages
 
+<p float="left">
+  <img src="./src/assets/readmePicture1.png" width="100" />
+  <img src="./src/assets/readmePicture2.png" width="100" />
+  <img src="./src/assets/readmePicture3.png" width="100" />
+</p>
+
 <br>
 
 |                    **Home Screen**                    |                              **Home Now Showing Screen**                              |                                     **Order Seat Screen**                                     |                               **List Movie Screen**                               |                                 **Detail Movie Screen**                                 |                                        **Schedule Screen**                                        |
 | :---------------------------------------------------: | :-----------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------: |
 | ![Team Leader Image](./src/assets/readmePicture1.png) |             ![Back-End Developer Image](./src/assets/readmePicture2.png)              |                 ![Front-End Developer Image](./src/assets/readmePicture6.png)                 |           ![Back-End Developer Image](./src/assets/readmePicture3.png)            |              ![Back-End Developer Image](./src/assets/readmePicture4.png)               |                   ![Back-End Developer Image](./src/assets/readmePicture5.png)                    |
-|                 <p> Home Screen </p>                  | <a href="https://github.com/tbmanix" target="_blank">`https://github.com/tbmanix`</a> | <a href="https://github.com/donny17-bit" target="_blank">`https://github.com/donny17-bit`</a> | <a href="https://github.com/Qxtlp" target="_blank">`https://github.com/Qxtlp`</a> | <a href="https://github.com/foldadjo" target="_blank">`https://github.com/foldadjo`</a> | <a href="https://github.com/aflahfernanda" target="_blank">`https://github.com/aflahfernanda`</a> |
+|                       <p> </p>                        | <a href="https://github.com/tbmanix" target="_blank">`https://github.com/tbmanix`</a> | <a href="https://github.com/donny17-bit" target="_blank">`https://github.com/donny17-bit`</a> | <a href="https://github.com/Qxtlp" target="_blank">`https://github.com/Qxtlp`</a> | <a href="https://github.com/foldadjo" target="_blank">`https://github.com/foldadjo`</a> | <a href="https://github.com/aflahfernanda" target="_blank">`https://github.com/aflahfernanda`</a> |
 
 ---
 
