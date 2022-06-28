@@ -60,8 +60,9 @@ URL_CLOUDINARY: "https://res.cloudinary.com/da776aoko/image/upload/v1656419307/"
 ## 🔎 Preview Pages
 
 <summary>Preview screen</summary>
-<img src="./src/assets/readmePicture1.png" alt="readmePicture1.png"" border="0">
-<img src="./src/assets/readmePicture2.png" alt="readmePicture1.png" border="0">
+| Preview Image                                                                                                                |
+| -------------------------------------------------------------------------------------------| ------------------------------- |
+| <img src="./src/assets/readmePicture1.png" alt="readmePicture1.png"" border="0">           |<img src="./src/assets/readmePicture2.png" alt="readmePicture1.png" border="0"> |
 
 <summary>Click Details To View More Preview</summary>
 <details>
