@@ -60,9 +60,8 @@ URL_CLOUDINARY: "https://res.cloudinary.com/da776aoko/image/upload/v1656419307/"
 ## 🔎 Preview Pages
 
 <summary>Preview screen</summary>
-| Preview Image                                                                                                                |
-| -------------------------------------------------------------------------------------------| ------------------------------- |
-| <img src="./src/assets/readmePicture1.png" alt="readmePicture1.png"" border="0">           |<img src="./src/assets/readmePicture2.png" alt="readmePicture1.png" border="0"> |
+<img src="./src/assets/readmePicture1.png" alt="readmePicture1.png"" border="0">
+<img src="./src/assets/readmePicture2.png" alt="readmePicture1.png" border="0">
 
 <summary>Click Details To View More Preview</summary>
 <details>
@@ -75,6 +74,13 @@ URL_CLOUDINARY: "https://res.cloudinary.com/da776aoko/image/upload/v1656419307/"
 </details>
 
 <br>
+
+|                           **Team Leader** <br> Muhammad Thariq Farsha                           |                       **Front-End Developer**<br> Tubagus Manix Hara                       |                                       **Front-End Developer** <br> Donny Wahyu                                       |                               **Front-End Developer** <br> Abdul Qodir Jaelani                                |                                  **Back-End Developer** <br> Jauhar Maknun Adib                                   |                                     **Back-End Developer**<br>Mohd.Aflah Fernandaa                                     |
+| :---------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: |
+|    [![Team Leader Image](./src/assets/readmePicture1.png)](https://github.com/thariqfarsha)     | [![Back-End Developer Image](./src/assets/readmePicture2.png)](https://github.com/tbmanix) | [![Front-End Developer Image](https://avatars.githubusercontent.com/u/74863390?v=4)](https://github.com/donny17-bit) | [![Back-End Developer Image](https://avatars.githubusercontent.com/u/97077814?v=4)](https://github.com/Qxtlp) | [![Back-End Developer Image](https://avatars.githubusercontent.com/u/101084359?v=4)](https://github.com/foldadjo) | [![Back-End Developer Image](https://avatars.githubusercontent.com/u/101084909?v=4)](https://github.com/aflahfernanda) |
+| <a href="https://github.com/thariqfarsha" target="_blank">`https://github.com/thariqfarsha`</a> |   <a href="https://github.com/tbmanix" target="_blank">`https://github.com/tbmanix`</a>    |            <a href="https://github.com/donny17-bit" target="_blank">`https://github.com/donny17-bit`</a>             |               <a href="https://github.com/Qxtlp" target="_blank">`https://github.com/Qxtlp`</a>               |              <a href="https://github.com/foldadjo" target="_blank">`https://github.com/foldadjo`</a>              |           <a href="https://github.com/aflahfernanda" target="_blank">`https://github.com/aflahfernanda`</a>            |
+
+---
 
 ## ✍️ itJobs - Backend Link
 
