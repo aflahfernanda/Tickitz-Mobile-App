@@ -22,6 +22,8 @@ import {
 } from '../../store/actions/user';
 import styles from './styles';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import axios from 'axios';
+import {set} from 'react-native-reanimated';
 
 function ProfileScreen(props) {
   const dispatch = useDispatch();
@@ -32,11 +34,6 @@ function ProfileScreen(props) {
   const [isPassword, setIspassword] = useState(true);
   const [date, setDate] = useState(new Date());
   const [image, setImage] = useState(null);
-  const [updateImageUser, setUpdateImageUser] = useState({
-    image: '',
-  });
-  console.log(updateImageUser);
-  console.log(updateImageUser);
   const [changeImage, setChangeImage] = useState(true);
   const [form, setForm] = useState({
     firstName: '',
@@ -56,44 +53,51 @@ function ProfileScreen(props) {
     getdataUser();
     wait(2000).then(() => setRefreshing(false));
   }, []);
-  const openCamera = () => {
-    const option = {
-      mediaType: 'photo',
-      quality: 1,
-    };
-    launchCamera(option, res => {
-      if (res.didCancel) {
-        console.log('user canceled');
-      } else if (res.errorCode) {
-        console.log(res.errorMessage);
-      } else {
-        const data = res.assets[0];
-        setImage(data);
-        setUpdateImageUser(data.fileName);
-        handleUpdateImage();
-        setChangeImage(true);
-      }
-    });
+  const options = {
+    title: 'Select Image',
+    type: 'library',
+    mediaType: 'images',
+    quality: 1,
   };
-  const openLibrary = () => {
-    const option = {
-      mediaType: 'photo',
-      quality: 1,
-    };
-    launchImageLibrary(option, res => {
-      if (res.didCancel) {
-        console.log('user canceled');
-      } else if (res.errorCode) {
-        console.log(res.errorMessage);
-      } else {
-        const data = res.assets[0];
-        setImage(data);
-        setUpdateImageUser(data.fileName);
-        handleUpdateImage();
-        setChangeImage(true);
-      }
-    });
-  };
+  // const openCamera = () => {
+  //   const option = {
+  //     mediaType: 'photo',
+  //     quality: 1,
+  //   };
+  //   launchCamera(option, res => {
+  //     if (res.didCancel) {
+  //       console.log('user canceled');
+  //     } else if (res.errorCode) {
+  //       console.log(res.errorMessage);
+  //     } else {
+  //       const data = res.assets[0];
+  //       setImage(data);
+  //       setUpdateImageUser(data.fileName);
+  //       handleUpdateImage();
+  //       setChangeImage(true);
+  //     }
+  //   });
+  // };
+  // const openLibrary = () => {
+  //   const option = {
+  //     mediaType: 'images',
+  //     quality: 1,
+  //   };
+  //   launchImageLibrary(option, res => {
+  //     if (res.didCancel) {
+  //       console.log('user canceled');
+  //     } else if (res.errorCode) {
+  //       console.log(res.errorMessage);
+  //     } else {
+  //       const data = res.assets[0];
+  //       setImage(data);
+  //       console.log(data.uri);
+  //       setUpdateImageUser(data.fileName);
+  //       handleUpdateImage();
+  //       setChangeImage(true);
+  //     }
+  //   });
+  // };
   useEffect(() => {
     getdataUser();
   }, []);
@@ -148,17 +152,43 @@ function ProfileScreen(props) {
     setIspassword(true);
     getdataUser();
   };
-  const handleUpdateImage = async () => {
+  const openGallery = async () => {
     try {
       const getId = await AsyncStorage.getItem('id');
+      const images = await launchImageLibrary(options);
       const formData = new FormData();
-      for (const data in updateImageUser) {
-        formData.append(data, updateImageUser[data]);
-      }
-      await dispatch(updateImage(getId, formData));
+      formData.append('image', {
+        uri: images.assets[0].uri,
+        type: images.assets[0].type,
+        name: images.assets[0].fileName,
+      });
+      console.log(formData);
+      const result = await dispatch(updateImage(getId, formData));
       Alert.alert('Update Succes', 'Succes Update Image');
+      setImage(images.assets[0]);
+      setChangeImage(true);
     } catch (error) {
-      console.log(error.response);
+      console.log(error.response.data);
+    }
+  };
+  const openCamera = async () => {
+    try {
+      const getId = await AsyncStorage.getItem('id');
+      const images = await launchCamera(options);
+      const formData = new FormData();
+      formData.append('image', {
+        uri: images.assets[0].uri,
+        type: images.assets[0].type,
+        name: images.assets[0].fileName,
+      });
+      console.log(formData);
+      const result = await dispatch(updateImage(getId, formData));
+      Alert.alert('Update Succes', 'Succes Update Image');
+      setImage(images.assets[0]);
+      setChangeImage(true);
+      console.log(result.action.payload.data.data);
+    } catch (error) {
+      console.log(error.response.data);
     }
   };
   const handleLogout = async () => {
@@ -253,16 +283,16 @@ function ProfileScreen(props) {
                 </View>
               ) : (
                 <View>
-                  <TouchableOpacity style={styles.buttonProfile}>
-                    <Text style={styles.buttonTextProfile} onPress={openCamera}>
-                      Open Camera
-                    </Text>
+                  <TouchableOpacity
+                    style={styles.buttonProfile}
+                    onPress={openCamera}>
+                    <Text style={styles.buttonTextProfile}>Open Camera</Text>
                   </TouchableOpacity>
 
                   <TouchableOpacity style={styles.buttonProfile}>
                     <Text
                       style={styles.buttonTextProfile}
-                      onPress={openLibrary}>
+                      onPress={openGallery}>
                       Open Galery
                     </Text>
                   </TouchableOpacity>
@@ -420,7 +450,7 @@ function ProfileScreen(props) {
                   <Text
                     style={styles.ticketResultButtonText}
                     onPress={id => handleResultTicket(item.id)}>
-                    > Ticket In Active
+                    Ticket In Active
                   </Text>
                 </TouchableOpacity>
               </View>

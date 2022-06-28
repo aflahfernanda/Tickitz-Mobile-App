@@ -66,12 +66,14 @@ function ForgotScreen(props) {
         <TextInput
           placeholder="Write Your New Password"
           style={styles.inputBox}
+          secureTextEntry={true}
           onChangeText={text => handleChangeForm(text, 'newPassword')}
         />
         <Text style={styles.inputName}>Confirm Password</Text>
         <TextInput
           placeholder="Write Your Confirm Password"
           style={styles.inputBox}
+          secureTextEntry={true}
           onChangeText={text => handleChangeForm(text, 'confirmPassword')}
         />
       </View>

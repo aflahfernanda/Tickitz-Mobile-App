@@ -8,15 +8,13 @@ import {
   Alert,
   Image,
 } from 'react-native';
-
+import Notification from '../../utils/notif';
 import styles from './styles';
-
 import Footer from '../../components/Footer';
 import {useDispatch, useSelector} from 'react-redux';
 import {postTransaction} from '../../store/actions/transaction';
 import {getUserById} from '../../store/actions/user';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {set} from 'react-native-reanimated';
 function PaymentScreen(props) {
   const dispatch = useDispatch();
 
@@ -56,6 +54,13 @@ function PaymentScreen(props) {
       console.log(resultTransaction);
       console.log(resultTransaction.action.payload.data.data);
       Alert.alert('Booking Status', 'Succes Booking Seat Next Go To Payment');
+      const setNotification = {
+        title: 'Tickitz',
+        message:
+          'Thanks for using tickitz, kindly check your ticket result for see your booking schedule ',
+        date: new Date(Date.now() + 2 * 1000),
+      };
+      Notification.scheduleProductNotification(setNotification);
       props.navigation.navigate('Midtrans', {
         midtrans: resultTransaction.action.payload.data.pagination,
       });

@@ -28,6 +28,7 @@ function ListScreen(props) {
 
   const [searchRelease, setSearchRelease] = useState('');
   const [searchName, setSearchName] = useState('');
+  const [sortName, setSortName] = useState('');
   const [openDropdown, setOpenDrodown] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -42,7 +43,7 @@ function ListScreen(props) {
     setTimeout(() => {
       getDataMovie();
     }, 1000);
-  }, [page, searchRelease, searchName, value]);
+  }, [page, searchRelease, searchName, sortName]);
 
   const getDataMovie = async () => {
     try {
@@ -51,7 +52,7 @@ function ListScreen(props) {
       setLoadMore(false);
       if (page <= totalPage) {
         const result = await axios.get(
-          `movie?page=${page}&limit=4&sort=${value}&searchRelease=${searchRelease}&searchName=${searchName}`,
+          `movie?page=${page}&limit=4&sort=${sortName}&searchRelease=${searchRelease}&searchName=${searchName}`,
         );
         console.log(result.data.data);
         if (page === 1) {
@@ -100,9 +101,9 @@ function ListScreen(props) {
     setSearchName(nameMovie);
     console.log(nameMovie);
   };
-  const handleSortMovie = items => {
-    setSearchName(items);
-    console.log(items);
+  const handleSortMovie = value => {
+    setSortName(value);
+    console.log(value);
   };
   const handleDetail = id => {
     props.navigation.navigate('Detail', {id: id});

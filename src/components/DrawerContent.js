@@ -40,7 +40,12 @@ function DrawerContent(props) {
       <DrawerContentScrollView {...props}>
         <View style={styles.containerProfile}>
           <View style={styles.avatar}>
-            {/* <Image source={require('')} style={styles.avatar} /> */}
+            <Image
+              source={{
+                uri: `https://res.cloudinary.com/da776aoko/image/upload/v1651001489/${userData.image}`,
+              }}
+              style={styles.avatar}
+            />
           </View>
           <View style={styles.biodata}>
             <Text style={styles.title}>

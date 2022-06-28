@@ -22,8 +22,8 @@ function ListHeader(props) {
   const handleSearchRelease = name => {
     props.handleSearchRelease(name);
   };
-  const handleSortMovie = items => {
-    props.setItems(items);
+  const handleSortMovie = value => {
+    props.handleSortMovie(value);
   };
   return (
     <>
@@ -40,6 +40,7 @@ function ListHeader(props) {
             setValue={setValue}
             setItems={setItems}
             style={styles.sort}
+            onChangeValue={handleSortMovie}
           />
         </View>
         <View style={styles.flex2}>
