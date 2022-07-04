@@ -15,6 +15,14 @@
 
 Website Application Booking Ticket| Mobile App Frontend Repository
 
+## Release Apk Link
+
+https://drive.google.com/file/d/1LQxKWrGw3SJjjAX-46ZCBr8iUZaxX52-/view?usp=sharing
+
+## Debugging Apk Link
+
+https://drive.google.com/file/d/12PZLiRM9Uva7jMFky3g1XpH5JlHGKSL5/view?usp=sharing
+
 ## Built With
 
 [![NodeJs](https://img.shields.io/badge/NodeJs-16.15.x-green)](https://github.com/react-bootstrap/react-bootstrap)
