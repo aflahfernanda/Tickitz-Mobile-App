@@ -13,7 +13,8 @@
 
 ## About The Project
 
-Website Application Booking Ticket| Mobile App Frontend Repository
+tickitz its an app for booking ticket online, and this app is build for mobile user with react native. the feature of this app 
+is you can check movie,order seat, see schedule and booking a ticket online. this app make user can book a ticket easyly
 
 ## Release Apk Link
 
@@ -26,7 +27,7 @@ https://drive.google.com/file/d/12PZLiRM9Uva7jMFky3g1XpH5JlHGKSL5/view?usp=shari
 ## Built With
 
 [![NodeJs](https://img.shields.io/badge/NodeJs-16.15.x-green)](https://github.com/react-bootstrap/react-bootstrap)
-[![React Native](https://img.shields.io/badge/Next-v12.1.6-black)](https://reactnative.dev/)
+[![React Native](https://img.shields.io/badge/ReactNative-v12.1.6-black)](https://reactnative.dev/)
 
 ## Requirements
 
@@ -45,13 +46,11 @@ URL_BACKEND: "https://project-paytickz.herokuapp.com/",
 URL_CLOUDINARY: "https://res.cloudinary.com/da776aoko/image/upload/v1656419307/",
 ```
 
-5. Type `npm run dev`
+5. Type `npx react-native run-android`
 
 ## Acknowledgements
 
 - [axios](https://www.npmjs.com/package/axios)
-- [bootstrap](https://www.npmjs.com/package/bootstrap)
-- [node-sass](https://www.npmjs.com/package/node-sass)
 - [qs](https://www.npmjs.com/package/qs)
 - [react-redux](https://www.npmjs.com/package/react-redux)
 - [redux](https://www.npmjs.com/package/redux)
@@ -60,9 +59,15 @@ URL_CLOUDINARY: "https://res.cloudinary.com/da776aoko/image/upload/v1656419307/"
 - [redux-thunk](https://www.npmjs.com/package/redux-thunk)
 - [eslint](https://www.npmjs.com/package/eslint)
 
-## App License
+## Contributors
 
-© [Tickitz](https://github.com/aflahfernanda/Tickitz-Mobile-App.git)
+If you have a suggestion that would make this better, please fork the repo and create a pull request.
+
+1. Fork the Project
+2. Create your Feature Branch
+3. Commit your Changes
+4. Push to the Branch
+5. Open a Pull Request
 
 ## 🔎 Preview Pages
 
@@ -82,34 +87,7 @@ URL_CLOUDINARY: "https://res.cloudinary.com/da776aoko/image/upload/v1656419307/"
   <img src="./src/assets/readmePicture7.png" width="250" />
 </p>
 
-## ✍️ Tickitz - Backend Link
-
-https://github.com/aflahfernanda/paytickz-project
-
 <br>
-
-## ⛏️ Built Using
-
-- [axios](https://www.npmjs.com/package/axios)
-- [qs](https://www.npmjs.com/package/qs)
-- [react-redux](https://www.npmjs.com/package/react-redux)
-- [redux](https://www.npmjs.com/package/redux)
-- [redux-logger](https://www.npmjs.com/package/redux-logger)
-- [redux-promise-middleware](https://www.npmjs.com/package/redux-promise-middleware)
-- [redux-thunk](https://www.npmjs.com/package/redux-thunk)
-- [eslint](https://www.npmjs.com/package/eslint)
-
-<br>
-
-## Contributors
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request.
-
-1. Fork the Project
-2. Create your Feature Branch
-3. Commit your Changes
-4. Push to the Branch
-5. Open a Pull Request
 
 ## Contact
 
@@ -120,3 +98,4 @@ email-[fernandaaflah@gmail.com](fernandaaflah@gmail.com)
 ## License
 
 © [Mohd.Aflah Fernanda](https://github.com/aflahfernanda)
+© [Tickitz](https://github.com/aflahfernanda/Tickitz-Mobile-App.git)
